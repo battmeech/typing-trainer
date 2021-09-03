@@ -11,12 +11,14 @@ export type Game = {
   state: State;
   wordCount: number;
   words: string[];
+  mistakes: number;
 };
 
 const initialState: Game = {
   state: State.NOT_STARTED,
   wordCount: 0,
   words: [],
+  mistakes: 0,
 };
 
 const gameSlice = createSlice({
@@ -30,10 +32,14 @@ const gameSlice = createSlice({
       state.words.push(action.payload);
       state.wordCount += 1;
     },
+    mistake(state) {
+      state.mistakes += 1;
+    },
     restart(state) {
       state.state = State.NOT_STARTED;
       state.wordCount = 0;
       state.words = [];
+      state.mistakes = 0;
     },
   },
 });

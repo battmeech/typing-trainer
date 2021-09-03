@@ -7,7 +7,7 @@ import { useTimer } from "./useTimer";
 
 export const Play = () => {
   const dispatch = useDispatch();
-  const time = useTimer(5, () =>
+  const time = useTimer(60, () =>
     dispatch(gameActions.setState(State.FINISHED))
   );
 
@@ -16,10 +16,9 @@ export const Play = () => {
   return (
     <VStack>
       <Text>Time left: {time}</Text>
-      <Text fontSize="xx-large">Current word:</Text>
-      <Text fontSize="xxx-large">{word}</Text>
+      <Text fontSize="xxx-large">Current word: {word}</Text>
       <Text fontSize="xx-large">{wordAsArray.join("")}</Text>
-      <Text>Next word: {nextWord}</Text>
+      <Text fontSize="xxx-large">Next word: {nextWord}</Text>
     </VStack>
   );
 };

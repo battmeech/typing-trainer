@@ -9,12 +9,10 @@ export const useTimer = (seconds: number, onCompleteCallback: () => void) => {
       return;
     }
 
-    const intervalId = setInterval(() => {
+    setTimeout(() => {
       setTimeLeft(timeLeft - 1);
     }, 1000);
-
-    return () => clearInterval(intervalId);
-  }, [timeLeft, onCompleteCallback]);
+  }, [timeLeft]);
 
   return timeLeft;
 };

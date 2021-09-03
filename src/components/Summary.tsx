@@ -5,12 +5,13 @@ import { useGame } from "../ducks";
 import { gameActions } from "../ducks/game";
 
 export const Summary = () => {
-  const { wordCount, words } = useGame();
+  const { wordCount, words, mistakes } = useGame();
   const dispatch = useDispatch();
 
   return (
     <VStack>
       <Text>Words complete: {wordCount}</Text>
+      <Text>Mistakes: {mistakes}</Text>
       <Text>You typed...</Text>
       <Text>{words.join(", ")}</Text>
       <Button

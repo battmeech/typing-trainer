@@ -15,6 +15,8 @@ export const useKeyboardListener = () => {
       const newArray = [...wordAsArray];
       newArray.shift();
       setWordAsArray(newArray);
+    } else {
+      dispatch(gameActions.mistake());
     }
   };
 
