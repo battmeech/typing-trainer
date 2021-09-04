@@ -4,9 +4,19 @@ import { useDispatch } from "react-redux";
 import { gameActions } from "../ducks/game";
 import randomWords from "random-words";
 
-export const useKeyboardListener = () => {
-  const [word, setWord] = useState(randomWords());
-  const [nextWord, setNextWord] = useState(randomWords());
+type Input = {
+  getNextWord?: () => string;
+  initialWord?: string;
+  initialNextWord?: string;
+};
+
+export const useKeyboardListener = ({
+  getNextWord,
+  initialWord,
+  initialNextWord,
+}: Input) => {
+  const [word, setWord] = useState(initialWord || randomWords());
+  const [nextWord, setNextWord] = useState(initialNextWord || randomWords());
   const [wordAsArray, setWordAsArray] = useState(word.split(""));
   const dispatch = useDispatch();
 
@@ -25,7 +35,7 @@ export const useKeyboardListener = () => {
       dispatch(gameActions.completeWord(word));
       setWord(nextWord);
       setWordAsArray(nextWord.split(""));
-      setNextWord(randomWords());
+      setNextWord(getNextWord ? getNextWord() : randomWords());
     }
   }, [wordAsArray]);
 

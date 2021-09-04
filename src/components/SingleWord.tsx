@@ -1,17 +1,19 @@
 import { Text, VStack } from "@chakra-ui/react";
 import React from "react";
 import { useDispatch } from "react-redux";
+import { useGame } from "../ducks";
 import { gameActions, State } from "../ducks/game";
 import { useKeyboardListener } from "./useKeyboardListener";
 import { useTimer } from "./useTimer";
 
-export const Play = () => {
+export const SingleWord = () => {
   const dispatch = useDispatch();
-  const time = useTimer(60, () =>
+  const { gameLength } = useGame();
+  const time = useTimer(gameLength, () =>
     dispatch(gameActions.setState(State.FINISHED))
   );
 
-  const { nextWord, word, wordAsArray } = useKeyboardListener();
+  const { nextWord, word, wordAsArray } = useKeyboardListener({});
 
   return (
     <VStack>

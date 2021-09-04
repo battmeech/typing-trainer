@@ -1,13 +1,14 @@
 import { Text } from "@chakra-ui/react";
 import React from "react";
 import { State, useGame } from "../ducks";
+import { Variation } from "../ducks/game";
 import { InitialCountdown } from "./InitialCountdown";
-import { Play } from "./Play";
+import { SingleWord } from "./SingleWord";
 import { Start } from "./Start";
 import { Summary } from "./Summary";
 
 export const Game = () => {
-  const { state } = useGame();
+  const { state, variation } = useGame();
 
   switch (state) {
     case State.NOT_STARTED:
@@ -15,7 +16,8 @@ export const Game = () => {
     case State.COUNTDOWN:
       return <InitialCountdown />;
     case State.IN_PROGRESS:
-      return <Play />;
+      if (variation === Variation.SINGLE_WORD) return <SingleWord />;
+      else return <Text>State: {state}</Text>;
     case State.FINISHED:
       return <Summary />;
     default:
