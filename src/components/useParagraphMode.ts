@@ -2,9 +2,11 @@
 import randomWords from "random-words";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
+import { useGame } from "../ducks";
 import { gameActions } from "../ducks/game";
 
 export const useParagraphMode = () => {
+  const { noMercy } = useGame();
   const [words] = useState(randomWords(150));
   const [wordIndex, setWordIndex] = useState(0);
   const [wordAsArray, setWordAsArray] = useState(words[wordIndex].split(""));
@@ -18,6 +20,7 @@ export const useParagraphMode = () => {
       setWordAsArray(newArray);
     } else {
       dispatch(gameActions.mistake());
+      if (noMercy) setWordAsArray(words[wordIndex].split(""));
     }
   };
 

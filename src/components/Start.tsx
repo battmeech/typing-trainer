@@ -2,6 +2,7 @@ import { Button, Heading, VStack } from "@chakra-ui/react";
 import React from "react";
 import { useDispatch } from "react-redux";
 import { gameActions, State, Variation } from "../ducks/game";
+import { NoMercyToggle } from "./NoMercyToggle";
 
 export const Start = () => {
   const dispatch = useDispatch();
@@ -24,11 +25,12 @@ export const Start = () => {
       <Button colorScheme="yellow" onClick={singleWordMode}>
         Single word mode
       </Button>
-      <VStack>
-        <Button colorScheme="yellow" onClick={paragraphMode}>
-          Paragraph mode
-        </Button>
-      </VStack>
+
+      <Button colorScheme="yellow" onClick={paragraphMode}>
+        Paragraph mode
+      </Button>
+
+      <NoMercyToggle />
     </VStack>
   );
 };

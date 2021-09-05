@@ -19,6 +19,7 @@ export type Game = {
   mistakes: number;
   variation: Variation;
   gameLength: number;
+  noMercy: boolean;
 };
 
 const initialState: Game = {
@@ -28,6 +29,7 @@ const initialState: Game = {
   mistakes: 0,
   variation: Variation.SINGLE_WORD,
   gameLength: 60,
+  noMercy: false,
 };
 
 const gameSlice = createSlice({
@@ -46,6 +48,9 @@ const gameSlice = createSlice({
     },
     mistake(state) {
       state.mistakes += 1;
+    },
+    toggleNoMercy(state) {
+      state.noMercy = !state.noMercy;
     },
     restart(state) {
       state.wordCount = 0;
