@@ -19,15 +19,15 @@ export const Summary = () => {
   };
 
   return (
-    <VStack>
+    <VStack w="full" spacing="5">
       <Text>Words complete: {wordCount}</Text>
       <Text>Mistakes: {mistakes}</Text>
 
-      <Button colorScheme="yellow" onClick={playAgain}>
+      <Button colorScheme="yellow" w="50%" onClick={playAgain}>
         Play again
       </Button>
 
-      <Button colorScheme="yellow" onClick={changeMode}>
+      <Button colorScheme="yellow" w="50%" onClick={changeMode}>
         Change mode
       </Button>
     </VStack>

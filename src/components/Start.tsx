@@ -22,11 +22,11 @@ export const Start = () => {
       <Heading>
         Type out as many words as possible within the time given.
       </Heading>
-      <Button colorScheme="yellow" onClick={singleWordMode}>
+      <Button colorScheme="yellow" w="50%" onClick={singleWordMode}>
         Single word mode
       </Button>
 
-      <Button colorScheme="yellow" onClick={paragraphMode}>
+      <Button colorScheme="yellow" w="50%" onClick={paragraphMode}>
         Paragraph mode
       </Button>
 
