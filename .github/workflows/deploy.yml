@@ -1,6 +1,6 @@
 # This workflow will do a clean install of the dependencies, and then run all unit tests.
 
-name: CI
+name: Deployment
 
 on:
   # Triggers the workflow on push events but only for the main branch
