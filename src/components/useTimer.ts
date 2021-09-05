@@ -12,7 +12,7 @@ export const useTimer = (seconds: number, onCompleteCallback: () => void) => {
     setTimeout(() => {
       setTimeLeft(timeLeft - 1);
     }, 1000);
-  }, [timeLeft]);
+  }, [onCompleteCallback, timeLeft]);
 
   return timeLeft;
 };
