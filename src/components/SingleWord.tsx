@@ -3,7 +3,8 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { useGame } from "../ducks";
 import { gameActions, State } from "../ducks/game";
-import { useKeyboardListener } from "./useKeyboardListener";
+import { Timer } from "./Timer";
+import { useSingleWordMode } from "./useSingleWordMode";
 import { useTimer } from "./useTimer";
 
 export const SingleWord = () => {
@@ -13,11 +14,11 @@ export const SingleWord = () => {
     dispatch(gameActions.setState(State.FINISHED))
   );
 
-  const { nextWord, word, wordAsArray } = useKeyboardListener({});
+  const { nextWord, word, wordAsArray } = useSingleWordMode();
 
   return (
     <VStack>
-      <Text>Time left: {time}</Text>
+      <Timer timeLeft={time} />
       <Text fontSize="xx-large" color="grey">
         Coming up: {nextWord}
       </Text>

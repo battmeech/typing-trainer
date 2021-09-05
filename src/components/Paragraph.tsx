@@ -1,9 +1,10 @@
-import { Text, VStack } from "@chakra-ui/react";
+import { Box, chakra, Text, VStack } from "@chakra-ui/react";
 import React from "react";
 import { useDispatch } from "react-redux";
 import { useGame } from "../ducks";
 import { gameActions, State } from "../ducks/game";
-import { useKeyboardListener } from "./useKeyboardListener";
+import { Timer } from "./Timer";
+import { useParagraphMode } from "./useParagraphMode";
 import { useTimer } from "./useTimer";
 
 export const Paragraph = () => {
@@ -13,11 +14,21 @@ export const Paragraph = () => {
     dispatch(gameActions.setState(State.FINISHED))
   );
 
-  useKeyboardListener({});
+  const { wordAsArray, words, wordIndex } = useParagraphMode();
 
   return (
     <VStack>
-      <Text>PARAGRAPH {time}</Text>
+      <Timer timeLeft={time} />
+
+      <Box w={{ base: "100%", lg: "75%" }}>
+        {words.map((word, index) => (
+          <chakra.span color={wordIndex === index ? "red" : ""}>
+            {word}{" "}
+          </chakra.span>
+        ))}
+      </Box>
+
+      <Text fontSize="x-large">{wordAsArray.join("")}</Text>
     </VStack>
   );
 };

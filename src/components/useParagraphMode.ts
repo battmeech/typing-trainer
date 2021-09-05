@@ -1,23 +1,13 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+import randomWords from "random-words";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { gameActions } from "../ducks/game";
-import randomWords from "random-words";
 
-type Input = {
-  getNextWord?: () => string;
-  initialWord?: string;
-  initialNextWord?: string;
-};
-
-export const useKeyboardListener = ({
-  getNextWord,
-  initialWord,
-  initialNextWord,
-}: Input) => {
-  const [word, setWord] = useState(initialWord || randomWords());
-  const [nextWord, setNextWord] = useState(initialNextWord || randomWords());
-  const [wordAsArray, setWordAsArray] = useState(word.split(""));
+export const useParagraphMode = () => {
+  const [words] = useState(randomWords(150));
+  const [wordIndex, setWordIndex] = useState(0);
+  const [wordAsArray, setWordAsArray] = useState(words[wordIndex].split(""));
   const dispatch = useDispatch();
 
   const compareWord = (key: string) => {
@@ -33,10 +23,10 @@ export const useKeyboardListener = ({
 
   useEffect(() => {
     if (wordAsArray.length === 0) {
-      dispatch(gameActions.completeWord(word));
-      setWord(nextWord);
-      setWordAsArray(nextWord.split(""));
-      setNextWord(getNextWord ? getNextWord() : randomWords());
+      const newIndex = Number(wordIndex + 1);
+      dispatch(gameActions.completeWord(words[wordIndex]));
+      setWordAsArray(words[newIndex].split(""));
+      setWordIndex(newIndex);
     }
   }, [wordAsArray]);
 
@@ -47,5 +37,5 @@ export const useKeyboardListener = ({
     return () => window.removeEventListener("keypress", eventListener);
   }, [compareWord]);
 
-  return { word, nextWord, wordAsArray };
+  return { words, wordAsArray, wordIndex };
 };

@@ -1,4 +1,4 @@
-import { Button, Heading, Text, VStack } from "@chakra-ui/react";
+import { Button, Heading, VStack } from "@chakra-ui/react";
 import React from "react";
 import { useDispatch } from "react-redux";
 import { gameActions, State, Variation } from "../ducks/game";
@@ -25,12 +25,9 @@ export const Start = () => {
         Single word mode
       </Button>
       <VStack>
-        <Button colorScheme="yellow" disabled onClick={paragraphMode}>
+        <Button colorScheme="yellow" onClick={paragraphMode}>
           Paragraph mode
         </Button>
-        <Text fontSize="xs" color="grey">
-          Coming soon
-        </Text>
       </VStack>
     </VStack>
   );
