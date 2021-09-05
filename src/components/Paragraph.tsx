@@ -1,8 +1,9 @@
-import { Box, chakra, Text, VStack } from "@chakra-ui/react";
+import { Box, chakra, VStack } from "@chakra-ui/react";
 import React from "react";
 import { useDispatch } from "react-redux";
 import { useGame } from "../ducks";
 import { gameActions, State } from "../ducks/game";
+import { CurrentWord } from "./CurrentWord";
 import { Timer } from "./Timer";
 import { useParagraphMode } from "./useParagraphMode";
 import { useTimer } from "./useTimer";
@@ -14,7 +15,7 @@ export const Paragraph = () => {
     dispatch(gameActions.setState(State.FINISHED))
   );
 
-  const { wordAsArray, words, wordIndex } = useParagraphMode();
+  const { words, wordIndex, characterIndex } = useParagraphMode();
 
   return (
     <VStack>
@@ -22,13 +23,18 @@ export const Paragraph = () => {
 
       <Box w={{ base: "100%", lg: "75%" }}>
         {words.map((word, index) => (
-          <chakra.span color={wordIndex === index ? "red" : ""}>
-            {word}{" "}
+          <chakra.span
+            color={wordIndex === index ? "red" : ""}
+            as={wordIndex > index ? "mark" : "span"}
+          >
+            {wordIndex === index ? (
+              <CurrentWord word={word} characterIndex={characterIndex} />
+            ) : (
+              word
+            )}{" "}
           </chakra.span>
         ))}
       </Box>
-
-      <Text fontSize="x-large">{wordAsArray.join("")}</Text>
     </VStack>
   );
 };

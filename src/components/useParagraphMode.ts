@@ -10,6 +10,8 @@ export const useParagraphMode = () => {
   const [words] = useState(randomWords(150));
   const [wordIndex, setWordIndex] = useState(0);
   const [wordAsArray, setWordAsArray] = useState(words[wordIndex].split(""));
+  const [characterIndex, setCharacterIndex] = useState(0);
+
   const dispatch = useDispatch();
 
   const compareWord = (key: string) => {
@@ -18,9 +20,13 @@ export const useParagraphMode = () => {
       const newArray = [...wordAsArray];
       newArray.shift();
       setWordAsArray(newArray);
+      setCharacterIndex(Number(characterIndex + 1));
     } else {
       dispatch(gameActions.mistake());
-      if (noMercy) setWordAsArray(words[wordIndex].split(""));
+      if (noMercy) {
+        setWordAsArray(words[wordIndex].split(""));
+        setCharacterIndex(0);
+      }
     }
   };
 
@@ -30,6 +36,7 @@ export const useParagraphMode = () => {
       dispatch(gameActions.completeWord(words[wordIndex]));
       setWordAsArray(words[newIndex].split(""));
       setWordIndex(newIndex);
+      setCharacterIndex(0);
     }
   }, [wordAsArray]);
 
@@ -40,5 +47,5 @@ export const useParagraphMode = () => {
     return () => window.removeEventListener("keypress", eventListener);
   }, [compareWord]);
 
-  return { words, wordAsArray, wordIndex };
+  return { words, characterIndex, wordIndex };
 };

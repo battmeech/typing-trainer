@@ -1,8 +1,9 @@
-import { chakra, Text, VStack } from "@chakra-ui/react";
+import { Text, VStack } from "@chakra-ui/react";
 import React from "react";
 import { useDispatch } from "react-redux";
 import { useGame } from "../ducks";
 import { gameActions, State } from "../ducks/game";
+import { CurrentWord } from "./CurrentWord";
 import { Timer } from "./Timer";
 import { useSingleWordMode } from "./useSingleWordMode";
 import { useTimer } from "./useTimer";
@@ -23,11 +24,7 @@ export const SingleWord = () => {
         Coming up: {nextWord}
       </Text>
       <Text fontSize="xxx-large">
-        {word.split("").map((character, index) => (
-          <chakra.span as={characterIndex > index ? "mark" : "span"}>
-            {character}
-          </chakra.span>
-        ))}
+        <CurrentWord word={word} characterIndex={characterIndex} />
       </Text>
     </VStack>
   );
