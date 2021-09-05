@@ -18,8 +18,10 @@ export const SingleWord = () => {
   return (
     <VStack>
       <Text>Time left: {time}</Text>
-      <Text fontSize="xx-large">Next word: {nextWord}</Text>
-      <Text fontSize="xxx-large">Current word: {word}</Text>
+      <Text fontSize="xx-large" color="grey">
+        Coming up: {nextWord}
+      </Text>
+      <Text fontSize="xxx-large">{word}</Text>
       <Text fontSize="x-large">{wordAsArray.join("")}</Text>
     </VStack>
   );

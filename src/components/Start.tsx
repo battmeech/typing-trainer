@@ -1,4 +1,4 @@
-import { Button, Heading, VStack } from "@chakra-ui/react";
+import { Button, Heading, Text, VStack } from "@chakra-ui/react";
 import React from "react";
 import { useDispatch } from "react-redux";
 import { gameActions, State, Variation } from "../ducks/game";
@@ -21,14 +21,17 @@ export const Start = () => {
       <Heading>
         Type out as many words as possible within the time given.
       </Heading>
-
       <Button colorScheme="yellow" onClick={singleWordMode}>
         Single word mode
       </Button>
-
-      <Button colorScheme="yellow" onClick={paragraphMode}>
-        Paragraph mode
-      </Button>
+      <VStack>
+        <Button colorScheme="yellow" disabled onClick={paragraphMode}>
+          Paragraph mode
+        </Button>
+        <Text fontSize="xs" color="grey">
+          Coming soon
+        </Text>
+      </VStack>
     </VStack>
   );
 };
