@@ -10,7 +10,7 @@ export const NoMercyToggle = () => {
 
   const buttonText = noMercy ? "Normal mode" : "No mercy mode";
   const helpText = noMercy
-    ? "In normal mode, mistakes won't effect you (but will still be counted)."
+    ? "In normal mode, there's no punishment for making a mistake (but will still be counted)."
     : "In no mercy mode, any mistakes will reset the current word.";
 
   return (
