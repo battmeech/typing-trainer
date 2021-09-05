@@ -21,6 +21,7 @@ export const useKeyboardListener = ({
   const dispatch = useDispatch();
 
   const compareWord = (key: string) => {
+    if (key === " ") return;
     if (key === wordAsArray[0]) {
       const newArray = [...wordAsArray];
       newArray.shift();
