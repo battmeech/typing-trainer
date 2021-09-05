@@ -2,23 +2,33 @@ import { Button, Text, VStack } from "@chakra-ui/react";
 import React from "react";
 import { useDispatch } from "react-redux";
 import { useGame } from "../ducks";
-import { gameActions } from "../ducks/game";
+import { gameActions, State } from "../ducks/game";
 
 export const Summary = () => {
-  const { wordCount, words, mistakes } = useGame();
+  const { wordCount, mistakes } = useGame();
   const dispatch = useDispatch();
+
+  const playAgain = () => {
+    dispatch(gameActions.restart());
+    dispatch(gameActions.setState(State.COUNTDOWN));
+  };
+
+  const changeMode = () => {
+    dispatch(gameActions.restart());
+    dispatch(gameActions.setState(State.NOT_STARTED));
+  };
 
   return (
     <VStack>
       <Text>Words complete: {wordCount}</Text>
       <Text>Mistakes: {mistakes}</Text>
-      <Text>You typed...</Text>
-      <Text>{words.join(", ")}</Text>
-      <Button
-        colorScheme="yellow"
-        onClick={() => dispatch(gameActions.restart())}
-      >
-        Restart
+
+      <Button colorScheme="yellow" onClick={playAgain}>
+        Play again
+      </Button>
+
+      <Button colorScheme="yellow" onClick={changeMode}>
+        Change mode
       </Button>
     </VStack>
   );

@@ -48,7 +48,6 @@ const gameSlice = createSlice({
       state.mistakes += 1;
     },
     restart(state) {
-      state.state = State.NOT_STARTED;
       state.wordCount = 0;
       state.words = [];
       state.mistakes = 0;

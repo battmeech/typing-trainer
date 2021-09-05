@@ -3,6 +3,7 @@ import React from "react";
 import { State, useGame } from "../ducks";
 import { Variation } from "../ducks/game";
 import { InitialCountdown } from "./InitialCountdown";
+import { Paragraph } from "./Paragraph";
 import { SingleWord } from "./SingleWord";
 import { Start } from "./Start";
 import { Summary } from "./Summary";
@@ -17,7 +18,7 @@ export const Game = () => {
       return <InitialCountdown />;
     case State.IN_PROGRESS:
       if (variation === Variation.SINGLE_WORD) return <SingleWord />;
-      else return <Text>State: {state}</Text>;
+      else return <Paragraph />;
     case State.FINISHED:
       return <Summary />;
     default:
