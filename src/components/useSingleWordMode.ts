@@ -10,6 +10,7 @@ export const useSingleWordMode = () => {
   const [word, setWord] = useState(randomWords());
   const [nextWord, setNextWord] = useState(randomWords());
   const [wordAsArray, setWordAsArray] = useState(word.split(""));
+  const [characterIndex, setCharacterIndex] = useState(0);
   const dispatch = useDispatch();
 
   const compareWord = (key: string) => {
@@ -18,9 +19,13 @@ export const useSingleWordMode = () => {
       const newArray = [...wordAsArray];
       newArray.shift();
       setWordAsArray(newArray);
+      setCharacterIndex(Number(characterIndex + 1));
     } else {
       dispatch(gameActions.mistake());
-      if (noMercy) setWordAsArray(word.split(""));
+      if (noMercy) {
+        setWordAsArray(word.split(""));
+        setCharacterIndex(0);
+      }
     }
   };
 
@@ -30,6 +35,7 @@ export const useSingleWordMode = () => {
       setWord(nextWord);
       setWordAsArray(nextWord.split(""));
       setNextWord(randomWords());
+      setCharacterIndex(0);
     }
   }, [wordAsArray]);
 
@@ -40,5 +46,5 @@ export const useSingleWordMode = () => {
     return () => window.removeEventListener("keypress", eventListener);
   }, [compareWord]);
 
-  return { word, nextWord, wordAsArray };
+  return { word, nextWord, characterIndex };
 };

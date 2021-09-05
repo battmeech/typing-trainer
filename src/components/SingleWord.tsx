@@ -1,4 +1,4 @@
-import { Text, VStack } from "@chakra-ui/react";
+import { chakra, Text, VStack } from "@chakra-ui/react";
 import React from "react";
 import { useDispatch } from "react-redux";
 import { useGame } from "../ducks";
@@ -14,7 +14,7 @@ export const SingleWord = () => {
     dispatch(gameActions.setState(State.FINISHED))
   );
 
-  const { nextWord, word, wordAsArray } = useSingleWordMode();
+  const { nextWord, word, characterIndex } = useSingleWordMode();
 
   return (
     <VStack>
@@ -22,8 +22,13 @@ export const SingleWord = () => {
       <Text fontSize="xx-large" color="grey">
         Coming up: {nextWord}
       </Text>
-      <Text fontSize="xxx-large">{word}</Text>
-      <Text fontSize="x-large">{wordAsArray.join("")}</Text>
+      <Text fontSize="xxx-large">
+        {word.split("").map((character, index) => (
+          <chakra.span as={characterIndex > index ? "mark" : "span"}>
+            {character}
+          </chakra.span>
+        ))}
+      </Text>
     </VStack>
   );
 };
