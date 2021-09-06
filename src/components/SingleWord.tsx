@@ -1,4 +1,4 @@
-import { Text, VStack } from "@chakra-ui/react";
+import { Input, Text, VStack } from "@chakra-ui/react";
 import React from "react";
 import { useDispatch } from "react-redux";
 import { useGame } from "../ducks";
@@ -26,6 +26,8 @@ export const SingleWord = () => {
       <Text fontSize="xxx-large">
         <CurrentWord word={word} characterIndex={characterIndex} />
       </Text>
+
+      <Input autoFocus display="none" />
     </VStack>
   );
 };

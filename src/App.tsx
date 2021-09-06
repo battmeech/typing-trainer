@@ -15,11 +15,11 @@ export const App = () => (
     <Box fontSize="xl">
       <Box minH="100vh" p={3}>
         <HStack maxW="1600px" mx="auto" justify="space-between">
-          <Heading>Typing Trainer </Heading>
+          <Heading size="lg">Typing Trainer </Heading>
           <ColorModeSwitcher />
         </HStack>
 
-        <Center h="90vh">
+        <Center h="90vh" p="2">
           <Game />
         </Center>
       </Box>

@@ -18,8 +18,8 @@ export const Start = () => {
   };
 
   return (
-    <VStack spacing="10">
-      <Heading>
+    <VStack w={{ base: "100%", lg: "50%" }} spacing="10">
+      <Heading size="md">
         Type out as many words as possible within the time given.
       </Heading>
       <Button colorScheme="yellow" w="50%" onClick={singleWordMode}>

@@ -19,7 +19,7 @@ export const Summary = () => {
   };
 
   return (
-    <VStack w="full" spacing="5">
+    <VStack w={{ base: "100%", lg: "75%" }} spacing="5">
       <Text>Words complete: {wordCount}</Text>
       <Text>Mistakes: {mistakes}</Text>
 

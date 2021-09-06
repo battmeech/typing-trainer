@@ -1,4 +1,4 @@
-import { Box, chakra, VStack } from "@chakra-ui/react";
+import { Box, chakra, VStack, Input } from "@chakra-ui/react";
 import React from "react";
 import { useDispatch } from "react-redux";
 import { useGame } from "../ducks";
@@ -35,6 +35,8 @@ export const Paragraph = () => {
           </chakra.span>
         ))}
       </Box>
+
+      <Input autoFocus display="none" />
     </VStack>
   );
 };
