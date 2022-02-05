@@ -1,21 +1,11 @@
-import { Box, chakra, VStack, Input } from "@chakra-ui/react";
+import { Box, chakra, Input, VStack } from "@chakra-ui/react";
 import React from "react";
-import { useDispatch } from "react-redux";
-import { useGame } from "../ducks";
-import { gameActions, State } from "../ducks/game";
 import { CurrentWord } from "./CurrentWord";
 import { Timer } from "./Timer";
 import { useParagraphMode } from "./useParagraphMode";
-import { useTimer } from "./useTimer";
 
 export const Paragraph = () => {
-  const dispatch = useDispatch();
-  const { gameLength } = useGame();
-  const time = useTimer(gameLength, () =>
-    dispatch(gameActions.setState(State.FINISHED))
-  );
-
-  const { words, wordIndex, characterIndex } = useParagraphMode();
+  const { words, wordIndex, characterIndex, time } = useParagraphMode();
 
   return (
     <VStack>

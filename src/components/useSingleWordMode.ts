@@ -3,15 +3,21 @@ import randomWords from "random-words";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useGame } from "../ducks";
-import { gameActions } from "../ducks/game";
+import { gameActions, State } from "../ducks/game";
+import { useTimer } from "./useTimer";
 
 export const useSingleWordMode = () => {
-  const { noMercy } = useGame();
+  const dispatch = useDispatch();
+  const { noMercy, gameLength } = useGame();
+
   const [word, setWord] = useState(randomWords());
   const [nextWord, setNextWord] = useState(randomWords());
   const [wordAsArray, setWordAsArray] = useState(word.split(""));
   const [characterIndex, setCharacterIndex] = useState(0);
-  const dispatch = useDispatch();
+
+  const time = useTimer(gameLength, () =>
+    dispatch(gameActions.setState(State.FINISHED))
+  );
 
   const compareWord = (key: string) => {
     if (key === " ") return;
@@ -46,5 +52,5 @@ export const useSingleWordMode = () => {
     return () => window.removeEventListener("keypress", eventListener);
   }, [compareWord]);
 
-  return { word, nextWord, characterIndex };
+  return { word, nextWord, characterIndex, time };
 };
