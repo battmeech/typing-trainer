@@ -57,6 +57,7 @@ const gameSlice = createSlice({
       state.wordCount = 0;
       state.words = [];
       state.mistakes = 0;
+      state.noMercy = false;
     },
   },
 });
