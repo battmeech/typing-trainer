@@ -8,9 +8,9 @@ export enum State {
 }
 
 export enum Variation {
-  SINGLE_WORD,
-  PARAGRAPH,
-  TIME_BOMB,
+  SINGLE_WORD = "SINGLE_WORD",
+  PARAGRAPH = "PARAGRAPH",
+  TIME_BOMB = "TIME_BOMB",
 }
 
 export type Game = {
