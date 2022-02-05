@@ -15,7 +15,7 @@ export const useParagraphMode = () => {
   const [wordAsArray, setWordAsArray] = useState(words[wordIndex].split(""));
   const [characterIndex, setCharacterIndex] = useState(0);
 
-  const time = useTimer(gameLength, () =>
+  const { timeRemaining } = useTimer(gameLength, () =>
     dispatch(gameActions.setState(State.FINISHED))
   );
 
@@ -52,5 +52,5 @@ export const useParagraphMode = () => {
     return () => window.removeEventListener("keypress", eventListener);
   }, [compareWord]);
 
-  return { words, characterIndex, wordIndex, time };
+  return { words, characterIndex, wordIndex, timeRemaining };
 };

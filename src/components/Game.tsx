@@ -7,6 +7,7 @@ import { SingleWord } from "./SingleWord";
 import { SomethingWrong } from "./SomethingWrong";
 import { Start } from "./Start";
 import { Summary } from "./Summary";
+import { TimeBomb } from "./TimeBomb";
 
 export const Game = () => {
   const { state, variation } = useGame();
@@ -18,7 +19,8 @@ export const Game = () => {
       return <InitialCountdown />;
     case State.IN_PROGRESS:
       if (variation === Variation.SINGLE_WORD) return <SingleWord />;
-      else return <Paragraph />;
+      if (variation === Variation.PARAGRAPH) return <Paragraph />;
+      else return <TimeBomb />;
     case State.FINISHED:
       return <Summary />;
     default:

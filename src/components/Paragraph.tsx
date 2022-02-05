@@ -5,11 +5,12 @@ import { Timer } from "./Timer";
 import { useParagraphMode } from "./useParagraphMode";
 
 export const Paragraph = () => {
-  const { words, wordIndex, characterIndex, time } = useParagraphMode();
+  const { words, wordIndex, characterIndex, timeRemaining } =
+    useParagraphMode();
 
   return (
     <VStack>
-      <Timer timeLeft={time} />
+      <Timer timeLeft={timeRemaining} />
 
       <Box w={{ base: "100%", lg: "75%" }}>
         {words.map((word, index) => (

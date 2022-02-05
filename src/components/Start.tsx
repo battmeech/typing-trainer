@@ -17,6 +17,11 @@ export const Start = () => {
     dispatch(gameActions.setVariation(Variation.PARAGRAPH));
   };
 
+  const timeBombMode = () => {
+    dispatch(gameActions.setState(State.COUNTDOWN));
+    dispatch(gameActions.setVariation(Variation.TIME_BOMB));
+  };
+
   return (
     <VStack w={{ base: "100%", lg: "50%" }} spacing="10">
       <Heading size="md">
@@ -28,6 +33,10 @@ export const Start = () => {
 
       <Button colorScheme="yellow" w="50%" onClick={paragraphMode}>
         Paragraph mode
+      </Button>
+
+      <Button colorScheme="yellow" w="50%" onClick={timeBombMode}>
+        Time Bomb mode
       </Button>
 
       <NoMercyToggle />

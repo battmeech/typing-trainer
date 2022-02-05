@@ -6,14 +6,14 @@ import { useTimer } from "./useTimer";
 
 export const InitialCountdown = () => {
   const dispatch = useDispatch();
-  const time = useTimer(3, () =>
+  const { timeRemaining } = useTimer(3, () =>
     dispatch(gameActions.setState(State.IN_PROGRESS))
   );
 
   return (
     <VStack>
       <Text>Get ready...</Text>
-      <Text>{time}</Text>
+      <Text>{Math.ceil(timeRemaining)}</Text>
     </VStack>
   );
 };

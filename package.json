@@ -2,7 +2,6 @@
   "name": "typing-trainer",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://battmeech.github.io/typing-trainer",
   "dependencies": {
     "@chakra-ui/react": "^1.0.0",
     "@emotion/react": "^11.0.0",

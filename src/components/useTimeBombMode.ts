@@ -6,16 +6,26 @@ import { useGame } from "../ducks";
 import { gameActions, State } from "../ducks/game";
 import { useTimer } from "./useTimer";
 
-export const useSingleWordMode = () => {
+const timeElapsedMap = [
+  { timeElapsed: 30, additionalTime: 0.3 },
+  { timeElapsed: 25, additionalTime: 0.4 },
+  { timeElapsed: 20, additionalTime: 0.6 },
+  { timeElapsed: 15, additionalTime: 0.7 },
+  { timeElapsed: 10, additionalTime: 0.9 },
+  { timeElapsed: 5, additionalTime: 1 },
+  { timeElapsed: 0, additionalTime: 1.5 },
+];
+
+export const useTimeBombMode = () => {
   const dispatch = useDispatch();
-  const { noMercy, gameLength } = useGame();
+  const { noMercy } = useGame();
 
   const [word, setWord] = useState(randomWords());
   const [nextWord, setNextWord] = useState(randomWords());
   const [wordAsArray, setWordAsArray] = useState(word.split(""));
   const [characterIndex, setCharacterIndex] = useState(0);
 
-  const { timeRemaining } = useTimer(gameLength, () =>
+  const { timeRemaining, addBonusTime, elapsedTime } = useTimer(10, () =>
     dispatch(gameActions.setState(State.FINISHED))
   );
 
@@ -35,6 +45,10 @@ export const useSingleWordMode = () => {
     }
   };
 
+  const calculateBonusTime = (): number =>
+    timeElapsedMap.find((it) => elapsedTime >= it.timeElapsed)
+      ?.additionalTime || 0;
+
   useEffect(() => {
     if (wordAsArray.length === 0) {
       dispatch(gameActions.completeWord(word));
@@ -42,6 +56,7 @@ export const useSingleWordMode = () => {
       setWordAsArray(nextWord.split(""));
       setNextWord(randomWords());
       setCharacterIndex(0);
+      addBonusTime(calculateBonusTime());
     }
   }, [wordAsArray]);
 
@@ -52,5 +67,5 @@ export const useSingleWordMode = () => {
     return () => window.removeEventListener("keypress", eventListener);
   }, [compareWord]);
 
-  return { word, nextWord, characterIndex, timeRemaining };
+  return { word, nextWord, characterIndex, timeRemaining, elapsedTime };
 };
