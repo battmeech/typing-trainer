@@ -25,8 +25,9 @@ export const useTimeBombMode = () => {
   const [wordAsArray, setWordAsArray] = useState(word.split(""));
   const [characterIndex, setCharacterIndex] = useState(0);
 
-  const { timeRemaining, addBonusTime, elapsedTime } = useTimer(10, () =>
-    dispatch(gameActions.setState(State.FINISHED))
+  const { timeRemaining, addBonusTime, elapsedTime, timeEarned } = useTimer(
+    10,
+    () => dispatch(gameActions.setState(State.FINISHED))
   );
 
   const compareWord = (key: string) => {
@@ -67,5 +68,12 @@ export const useTimeBombMode = () => {
     return () => window.removeEventListener("keypress", eventListener);
   }, [compareWord]);
 
-  return { word, nextWord, characterIndex, timeRemaining, elapsedTime };
+  return {
+    word,
+    nextWord,
+    characterIndex,
+    timeRemaining,
+    timeEarned,
+    timePerWord: calculateBonusTime(),
+  };
 };

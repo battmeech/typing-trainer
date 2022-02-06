@@ -5,8 +5,14 @@ import { Timer } from "./Timer";
 import { useTimeBombMode } from "./useTimeBombMode";
 
 export const TimeBomb = () => {
-  const { nextWord, word, characterIndex, timeRemaining, elapsedTime } =
-    useTimeBombMode();
+  const {
+    nextWord,
+    word,
+    characterIndex,
+    timeRemaining,
+    timeEarned,
+    timePerWord,
+  } = useTimeBombMode();
 
   return (
     <VStack>
@@ -20,7 +26,8 @@ export const TimeBomb = () => {
 
       <Input autoFocus display="none" />
 
-      <Text>Time Elapsed: {elapsedTime}</Text>
+      <Text>Earn {timePerWord}s for each word</Text>
+      <Text>You've earned {Math.round(timeEarned * 10) / 10} so far</Text>
     </VStack>
   );
 };

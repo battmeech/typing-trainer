@@ -1,4 +1,4 @@
-import { Button, Text, VStack } from "@chakra-ui/react";
+import { Button, Heading, Text, VStack } from "@chakra-ui/react";
 import React from "react";
 import { FaSkullCrossbones } from "react-icons/fa";
 import { GiAngelOutfit } from "react-icons/gi";
@@ -11,15 +11,15 @@ export const NoMercyToggle = () => {
   const dispatch = useDispatch();
 
   return (
-    <VStack w="full">
-      <Text>No mercy mode</Text>
+    <VStack w="full" spacing="5">
+      <Heading size="sm">Fancy a challenge?</Heading>
       <Button
         w="50%"
         rightIcon={noMercy ? <FaSkullCrossbones /> : <GiAngelOutfit />}
         colorScheme={noMercy ? "red" : "green"}
         onClick={() => dispatch(gameActions.toggleNoMercy())}
       >
-        {noMercy ? "On" : "Off"}
+        No mercy mode: {noMercy ? "On" : "Off"}
       </Button>
 
       <Text color="grey" fontSize="xs">
