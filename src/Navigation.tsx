@@ -13,7 +13,6 @@ export const Navigation = () => {
           fontSize="lg"
           variant="ghost"
           color="current"
-          marginLeft="2"
           icon={<MdHome />}
           aria-label="Go to leader game screen"
         />
@@ -25,7 +24,6 @@ export const Navigation = () => {
           fontSize="lg"
           variant="ghost"
           color="current"
-          marginLeft="2"
           icon={<MdLeaderboard />}
           aria-label="Go to leader board page"
         />
